@@ -2,15 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMove : MonoBehaviour {
+public class playerMove : MonoBehaviour
+{
+    [SerializeField] private string horizontalInputName;
+    [SerializeField] private string verticalInputName;
+    [SerializeField] private float movementSpeed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private CharacterController charController;
+
+    private void Awake()
+    {
+        charController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        PlayerMovement();
+    }
+
+    private void PlayerMovement()
+    {
+        float horizInput = Input.GetAxis(horizontalInputName) * movementSpeed;
+        float vertInput = Input.GetAxis(verticalInputName) * movementSpeed;
+
+        Vector3 forwardMovement = transform.forward * vertInput;
+        Vector3 rightMovement = transform.right * horizInput;
+
+        charController.SimpleMove(forwardMovement + rightMovement);
+    }
 }
+
