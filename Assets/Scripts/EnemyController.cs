@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
     public float lookRadius = 10f;
 
+    Transform target;
+    NavMeshAgent agent;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        agent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
